@@ -31,6 +31,25 @@
             padding: 2rem 0;
             background-color: #2c3e50;
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+            background-size: cover;
+            background-position: center;
+            transition: opacity 0.5s ease;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
         }
         
         h1 {
@@ -91,24 +110,238 @@
             font-size: 0.9rem;
             margin-top: 2rem;
         }
+        
+        /* New styles for image gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .gallery-item {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 0.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            max-width: 80%;
+            max-height: 80%;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        
+        /* Skill bars */
+        .skills {
+            margin: 2rem 0;
+        }
+        
+        .skill {
+            margin-bottom: 1rem;
+        }
+        
+        .skill-name {
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+        
+        .skill-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .skill-level {
+            height: 100%;
+            background-color: #3498db;
+            border-radius: 5px;
+        }
+        
+        /* Animation classes */
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Theme toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+        
+        /* Dark theme */
+        .dark-theme {
+            background-color: #222;
+            color: #f5f5f5;
+        }
+        
+        .dark-theme .container {
+            background-color: #333;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+        
+        .dark-theme h2 {
+            color: #e0e0e0;
+            border-bottom-color: #444;
+        }
+        
+        .dark-theme .project-list li {
+            background-color: #444;
+            border-left-color: #3498db;
+        }
+        
+        .dark-theme .project-title {
+            color: #3498db;
+        }
+        
+        .dark-theme a {
+            color: #5dade2;
+        }
     </style>
 </head>
 <body>
+    <div class="modal" id="imageModal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+    
+    <button class="theme-toggle" id="themeToggle">☀️</button>
+    
     <header>
-        <h1>Welcome to My Personal Kitchenette</h1>
-        <p>Software Developer & Data Scientist, a bit of wine taster, of wannabe photographer and of jazz music fan</p>
+        <div class="header-bg" id="headerBackground"></div>
+        <div class="header-content">
+            <h1>Welcome to My Personal Kitchenette</h1>
+            <p>Software Developer & Data Scientist, a bit of wine taster, of wannabe photographer and of jazz music fan</p>
+        </div>
     </header>
     
     <div class="container">
-        <section id="about">
+        <section id="about" class="fade-in">
             <h2>About Me</h2>
             <p>
                 I am a passionate software developer and data scientist with experience in various technologies and research areas.
-                Currently, I'm working on projects related to drug discovery, data analysis, and software development.
+                Currently, I'm working on projects related to drug discovery, data analysis, and software development at Fraunhofer-ITMP ScreeningPort in Hamburg, Germany.
             </p>
+            <img src="./Nice_me.jpg" alt="Andrea" class="profile-pic" id="profilePic" onclick="showImageInModal(this.src)">
+            
+            <div class="skills">
+                <div class="skill">
+                    <div class="skill-name">Python Development</div>
+                    <div class="skill-bar"><div class="skill-level" style="width: 90%"></div></div>
+                </div>
+                <div class="skill">
+                    <div class="skill-name">R Analysis</div>
+                    <div class="skill-bar"><div class="skill-level" style="width: 85%"></div></div>
+                </div>
+                <div class="skill">
+                    <div class="skill-name">Data Science</div>
+                    <div class="skill-bar"><div class="skill-level" style="width: 95%"></div></div>
+                </div>
+                <div class="skill">
+                    <div class="skill-name">Photography</div>
+                    <div class="skill-bar"><div class="skill-level" style="width: 75%"></div></div>
+                </div>
+                <div class="skill">
+                    <div class="skill-name">Wine Tasting</div>
+                    <div class="skill-bar"><div class="skill-level" style="width: 80%"></div></div>
+                </div>
+            </div>
         </section>
-        <img src=".\Nice_me.jpg" alt="Andrea" class="profile-pic">
-        <section id="fraunhofer">
+        
+        <section id="hamburg-gallery" class="fade-in">
+            <h2>Hamburg Through My Lens</h2>
+            <p>As a "wannabe photographer," I enjoy capturing the beauty of Hamburg. Here are some of my favorite shots of the harbor and surroundings.</p>
+            
+            <div class="gallery">
+                <div class="gallery-item" onclick="showImageInModal('/api/placeholder/800/600')">
+                    <img src="/api/placeholder/800/600" alt="Hamburg Harbor - Steamboat">
+                    <div class="gallery-caption">Alster Steamboat in Autumn</div>
+                </div>
+                <div class="gallery-item" onclick="showImageInModal('/api/placeholder/800/600')">
+                    <img src="/api/placeholder/800/600" alt="Hamburg Harbor - Cranes at Sunset">
+                    <div class="gallery-caption">Harbor Cranes at Golden Hour</div>
+                </div>
+                <div class="gallery-item" onclick="showImageInModal('/api/placeholder/800/600')">
+                    <img src="/api/placeholder/800/600" alt="Hamburg Port - Container Terminal">
+                    <div class="gallery-caption">Port Silhouettes at Dusk</div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="fraunhofer" class="fade-in">
             <h2>My Work at Hamburg Fraunhofer-ITMP ScreeningPort</h2>
             <p>I have contributed to several research projects at Fraunhofer-Institut für Translationale Medizin und Pharmakologie ITMP. Here are some of the repositories I've worked on:</p>
             
@@ -145,7 +378,7 @@
             </ul>
         </section>
         
-        <section id="other-projects">
+        <section id="other-projects" class="fade-in">
             <h2>Other Projects</h2>
             <ul class="project-list">
                 <li>
@@ -156,7 +389,7 @@
             </ul>
         </section>
         
-        <section id="contact">
+        <section id="contact" class="fade-in">
             <h2>Contact</h2>
             <p>Feel free to reach out to me through GitHub or connect with me on professional networks.</p>
             <p>
@@ -168,5 +401,87 @@
     <footer>
         &copy; 2025 - Personal website hosted on GitHub Pages
     </footer>
+    
+    <script>
+        // Array of header background images
+        const headerImages = [
+            '/api/placeholder/1200/400',
+            '/api/placeholder/1200/400',
+            '/api/placeholder/1200/400'
+        ];
+        
+        // Randomly select header background
+        function setRandomHeaderBg() {
+            const headerBg = document.getElementById('headerBackground');
+            const randomIndex = Math.floor(Math.random() * headerImages.length);
+            headerBg.style.backgroundImage = `url('${headerImages[randomIndex]}')`;
+        }
+        
+        // Modal functionality
+        function showImageInModal(src) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            
+            modal.style.display = 'flex';
+            modalImg.src = src;
+        }
+        
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+        
+        // Theme toggle
+        let darkMode = false;
+        const themeToggle = document.getElementById('themeToggle');
+        
+        function toggleTheme() {
+            darkMode = !darkMode;
+            document.body.classList.toggle('dark-theme', darkMode);
+            themeToggle.innerText = darkMode ? '🌙' : '☀️';
+        }
+        
+        themeToggle.addEventListener('click', toggleTheme);
+        
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.fade-in');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.style.opacity = 1;
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+        
+        // Initialize
+        window.onload = function() {
+            setRandomHeaderBg();
+            
+            // Set initial state for animations
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach(element => {
+                element.style.opacity = 0;
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            });
+            
+            // Trigger initial animation check
+            animateOnScroll();
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // Close modal when clicking outside the image
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        };
+    </script>
 </body>
 </html>
