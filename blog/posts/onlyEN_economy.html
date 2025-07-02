@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Economy? - Andrea's Coffee Blog</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+    h1, h2, h3 { color: #333; }
+    a { color: #0366d6; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .date { color: #666; font-style: italic; }
+    header, footer { margin: 2rem 0; text-align: center; }
+    blockquote {
+      background-color: #f8f8f8;
+      border-left: 4px solid #ddd;
+      padding: 1rem;
+      margin: 1rem 0;
+      font-style: italic;
+    }
+	.surprising-insights {
+            background: linear-gradient(135deg, #ff9a56 0%, #ff6b6b 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .surprising-insights h2 {
+            color: white;
+            border-left: 4px solid white;
+            margin-top: 0;
+        }
+	.container {
+       display: grid;
+       place-items: center;
+       height: 10px; /* Optional: Set a height for the container */
+     }
+    code {
+      background-color: #f1f1f1;
+      padding: 0.2rem 0.4rem;
+      border-radius: 3px;
+    }
+    strong { font-weight: bold; }
+    img { max-width: 100%; height: auto; }
+    
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Andrea's Coffee Blog</h1>
+    <nav>
+      <a href="/">Home</a> | 
+      <a href="/blog/">Blog</a> | 
+      <a href="/blog/about.html">About</a>
+    </nav>
+  </header>
+  
+  <main>
+    <article>
+      <!-- English Version -->
+      <div class="translation active" id="content-en">
+        <h1>Economy?</h1>
+        <p class="date">July 2, 2025</p>
+        
+        <h3>Happy to sip with you a coffee on this .... but leave if it does not resonate</h3>
+
+        <p>Again, I need to thank my sister who always drops me something <a href="https://www.vita.it/zamagni-il-riarmo-non-porta-mai-la-pace-ma-stavolta-trump-ha-fatto-male-i-conti/">interesting to reaad</a>. Stefano Zamagni, Professore Emeritus of political Economy at Bologna University, talking about Trump's attitude and decisions, disclosed something that was long living in me, since first appearance of the so-called <strong>"globalization"</strong>.</p>
+		<p>It was 2008 and I was happily working for Eli Lilly at its Research Center for Diabetes in Hamburg. We had the visit of former VP for toxicology, who very candidly taught us the wonderful and progressive strength of Chinese and Indian young people. Their culture notwithstanding their humble attitude. Hence, the long due decision to close the Hamburg site, which costed Eli Lilly more than expected and certainly more than any same-sized site in Shangai or Pune. <strong>This was and is globalization in western Pharma R&D.</strong> Many other Pharma followed. <strong>But</strong>, here what "in the long run" it really meant for US: China bought the US deficit and US repayed them teaching China's and India's students to higher levels. To lose them, finally. <strong>We in Europe knew this since 2008 at least!!</strong>. I personally knew, back then, lots of Chinese Eli Lilly's colleagues back in Shanghai UNI, already.</p>
+		
+		
+		<blockquote>
+          <p><em>Because what people do not know or do not want to understand is that the Americans do not have enough human capital, the brains are all European or Asian, some from Latin America. The day when all the European brains leave the laboratories, starting with the nuclear ones, the US will be in a quandary. This is what many people should know.</em></p>
+        </blockquote>
+		
+		
+		<p>These words opened my heart: finally I saw them black-on-white written somewhere!!! How many foreing students would have already left US if it were possible to them, if their "Heimat" Nations would have given them a reasonable salary, position, recognition?</p>
+		<p>Try to imagine what would happen to US? To Europe? Probably not what happened to China or India, which grew their entire societies WITH returning students as novel managers, yes. It would be probably not so dramatic as industry, and especially health industry, has slower pace to renewal than others.</p>
+		
+		<p>Anyone in EU politics <strong>seriously</strong> thinking about it?</p>
+		
+		
+      </div>
+    </article>
+  </main>
+  
+  <footer>
+    <p>&copy; 2025 Andrea Zaliani</p>
+  </footer>
+
+  <script>
+    function switchLanguage(lang) {
+      // Hide all translations
+      const translations = document.querySelectorAll('.translation');
+      translations.forEach(translation => {
+        translation.classList.remove('active');
+      });
+      
+      // Show selected language
+      const selectedContent = document.getElementById(`content-${lang}`);
+      if (selectedContent) {
+        selectedContent.classList.add('active');
+      }
+      
+      // Update button states
+      const buttons = document.querySelectorAll('.lang-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      const activeButton = document.querySelector(`[data-lang="${lang}"]`);
+      if (activeButton) {
+        activeButton.classList.add('active');
+      }
+      
+      // Update document language attribute
+      document.documentElement.lang = lang;
+      
+      // Save preference in localStorage
+      localStorage.setItem('preferred-language', lang);
+    }
+    
+    // Load saved language preference on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedLang = localStorage.getItem('preferred-language');
+      if (savedLang && ['en', 'de', 'it'].includes(savedLang)) {
+        switchLanguage(savedLang);
+      }
+    });
+  </script>
+</body>
+</html>
