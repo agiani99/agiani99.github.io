@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caterpillar or Butterfly? - Andrea's Coffee Blog</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+    h1, h2, h3 { color: #333; }
+    a { color: #0366d6; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .date { color: #666; font-style: italic; }
+    header, footer { margin: 2rem 0; text-align: center; }
+    blockquote {
+      background-color: #f8f8f8;
+      border-left: 4px solid #ddd;
+      padding: 1rem;
+      margin: 1rem 0;
+      font-style: italic;
+    }
+	.surprising-insights {
+            background: linear-gradient(135deg, #ff9a56 0%, #ff6b6b 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .surprising-insights h2 {
+            color: white;
+            border-left: 4px solid white;
+            margin-top: 0;
+        }
+	.container {
+       display: grid;
+       place-items: center;
+       height: 10px; /* Optional: Set a height for the container */
+     }
+    code {
+      background-color: #f1f1f1;
+      padding: 0.2rem 0.4rem;
+      border-radius: 3px;
+    }
+    strong { font-weight: bold; }
+    img { max-width: 100%; height: auto; }
+    
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Andrea's Coffee Blog</h1>
+    <nav>
+      <a href="/">Home</a> | 
+      <a href="/blog/">Blog</a> | 
+      <a href="/blog/about.html">About</a>
+    </nav>
+  </header>
+  
+  <main>
+    <article>
+      <!-- English Version -->
+      <div class="translation active" id="content-en">
+        <h1>#13 Caterpillar or Butterfly?</h1>
+        <p class="date">July 10, 2025</p>
+        
+        <h3>Happy to sip with you a coffee on this .... but leave if it does not resonate</h3>
+
+        <p>It is always my sister that finds good things for me. Recently, she got me a book from one of my most admired book writer:<strong> Massimo Recalcati</strong>. The guy can, at first sight, result pretty narcissistic with his way to attract every attention and how he explains psychiatric cases with lots of cultural links. Real intellectual? Nah. Son of low-middle Milan family in Italian sixties: a boomer. Self-made psychiatrist. Lacan follower. His main "peculiarity" ("defect" for others) is to try linking religion to human psychiatric behaviours and needs. In one of <a href: "https://amzn.eu/d/dhpEIEi">latest books he reports about Brothers and Sisters.</a> This book is really impressive.</p>
+		
+		<p>Why I am so intrigued by this theme? Because it looks like to be back to the daily news: white supremacists, racism, nationalisms, Heimat concepts. These are the news. Sigh. The book speaks of another world. The guy pushes us to confromt with our kids and their classmates. With whom they live and love and hate. With what we and they are afraid of. Our world is not anymore ONE, but at least splitted into TWO: WE and the OTHERS. Our kids call them sometimes<strong> "Bro"</strong>. You got my point!</p>
+				
+		<blockquote>
+          <p><em>It is the basic option of my reading of family ties: the sperm does not establish paternity, the ovule does not establish maternity, consanguinity does not establish brothers or sisters. Blood is not the substance of brotherhood.</em></p>
+        </blockquote>
+		
+		<p>Then, what is brotherhood?</p>
+		<p>After COVID and Vaccination fight, everyone knows DNA and how much DNA is vital to define who we are. Baboons have 99% of same DNA of ours, though. Aagh!</p>
+		<p>Races differentiation can be as low as less then 1% and they are biodiversity attempts that nature uses to cope with several other factors even outside DNA. So that Caterpillars are Brothers/Sisters of their "relative" Butterflies. What I am saying by this is that DNA can contain TWO OR MORE different individuals which appear when TIME is up by a concert of epigenetic events (epigenetics = "beyond genes"). Genes don't change, DNA do not change. Individuals can CHANGE. They can RESPOND. They can ACTIVATE, They can be TRIGGERED. Pushing it to the limit: why we cannot be just only one human being, like St.Paul taught?</p>
+		
+		<p>Anyone scared to have a twin or more epigenetic brother/sister within him/herself like a caterpillar giving birth to a butterfly? How about omozygotic twins separated at birth and developing two different lives at different locations, at different diets, stress, climates, toxic environments? Who of the two is closer to an heterozygotic brother or sister? Why the hell we don't teach to our problematic kids that they can be different if they let themselves RESPOND to life? And responding to life is NOT secluding themselves in rooms, cities, drugs, alcohol, toxic friendships or relationships or marriages? Why we fear to blow up our own (dis-)comfort zones? (<a href="/blog/posts/multilingual_KomfortZ.html">see here</a>).</p>
+		
+		<p>Happy to sip with you a coffee on this .... here I need a double espresso, though.</p>
+		
+      </div>
+    </article>
+  </main>
+  
+  <footer>
+    <p>&copy; 2025 Andrea Zaliani</p>
+  </footer>
+
+  <script>
+    function switchLanguage(lang) {
+      // Hide all translations
+      const translations = document.querySelectorAll('.translation');
+      translations.forEach(translation => {
+        translation.classList.remove('active');
+      });
+      
+      // Show selected language
+      const selectedContent = document.getElementById(`content-${lang}`);
+      if (selectedContent) {
+        selectedContent.classList.add('active');
+      }
+      
+      // Update button states
+      const buttons = document.querySelectorAll('.lang-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      const activeButton = document.querySelector(`[data-lang="${lang}"]`);
+      if (activeButton) {
+        activeButton.classList.add('active');
+      }
+      
+      // Update document language attribute
+      document.documentElement.lang = lang;
+      
+      // Save preference in localStorage
+      localStorage.setItem('preferred-language', lang);
+    }
+    
+    // Load saved language preference on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedLang = localStorage.getItem('preferred-language');
+      if (savedLang && ['en', 'de', 'it'].includes(savedLang)) {
+        switchLanguage(savedLang);
+      }
+    });
+  </script>
+</body>
+</html>
